@@ -1,9 +1,12 @@
-import { PrismaUsersRepository } from "../../repositories/prisma/prisma-users.repository";
+import { PrismaCheckInsRepository } from "../../repositories/prisma/prisma-check-ins.repository";
+import { PrismaGymsRepository } from "../../repositories/prisma/prisma-gyms.repository";
 import { CheckInService } from "../check-in.service";
 
 export function makeCheckInService() {
-  const usersRepository = new PrismaUsersRepository();
-  const checkInService = new CheckInService(usersRepository);
+  const checkInsRepository = new PrismaCheckInsRepository();
+  const gymsRepository = new PrismaGymsRepository();
+
+  const checkInService = new CheckInService(checkInsRepository, gymsRepository);
 
   return checkInService;
 }
